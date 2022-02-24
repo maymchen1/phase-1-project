@@ -10,7 +10,11 @@ const homePageTemplate = () => {
     <        <h1 class="center-align">Welcome! Shop our New Releases</h1>
 `
 }
+/** Renderers **/
 
+const renderHomePage = () => {
+    mainDiv().innerHTML = homePageTemplate();
+}
 /*****************/
 
 
@@ -18,3 +22,6 @@ const homePageTemplate = () => {
 
 
 /** WHEN THE DOM LOADS **/
+document.addEventListener('DOMContentLoaded', () =>{
+    renderHomePage();
+})
