@@ -13,14 +13,14 @@ let inventory = [];
 const mainDiv = () => document.getElementById("main");
 const homePageLink = () => document.getElementById('home-page-link');
 const wishlistLink = () => document.getElementById('wishlist-link');
-const searchLink = () => document.getElementById('search-link');
+const sellLink = () => document.getElementById('sell-link');
 const itemInput = () => document.getElementById('item');
 const sizeInput = () => document.getElementById('size');
 const priceInput = () => document.getElementById('price');
 /** Templates **/
 const homePageTemplate = () => {
     return `
-            <h1 class="center-align">Welcome! Shop our New Releases</h1>
+            <h1 class="center-align">Welcome! Shop and sell at one place! </h1>
 `
 }
 const wishlistTemplate = () => {
@@ -54,59 +54,6 @@ const wishlistTemplate = () => {
        </tbody>
      </table>  `
 }
-const searchTemplate = () => {
-    const h1 = document.createElement('h1');
-    const form = document.createElement('form');
-
-    const itemDiv = document.createElement('div');
-    const itemInput = document.createElement ('input');
-    const itemLabel = document.createElement ('label');
-    
-    const sizeDiv = document.createElement('div');
-    const sizeInput = document.createElement ('input');
-    const sizeLabel = document.createElement ('label');
-
-    const priceDiv = document.createElement('div');
-    const priceInput = document.createElement ('input');
-    const priceLabel = document.createElement ('label');
-
-    h1.className = 'center-align';
-    itemDiv.className ='input-field';
-    sizeDiv.className ='input-field';
-    priceDiv.className ='input-field';
-
-    itemInput.setAttribute ('id', 'date');
-    itemInput.setAttribute ('type', 'text');
-    itemInput.setAttribute ('for', 'date');
-
-    sizeInput.setAttribute ('id', 'date');
-    sizeInput.setAttribute ('type', 'text');
-    sizeInput.setAttribute ('for', 'date');
-
-    priceInput.setAttribute ('id', 'date');
-    priceInput.setAttribute ('type', 'text');
-    priceInput.setAttribute ('for', 'date');
-
-    h1.innerText = 'Search';
-    itemLabel.innerText ='Item';
-    sizeLabel.innerText = 'Size';
-    priceLabel.innerText = 'Price';
-
-    itemDiv.appendChild(itemInput);
-    itemDiv.appendChild(itemLabel);
-    sizeDiv.appendChild(sizeInput);
-    sizeDiv.appendChild(sizeLabel);
-    priceDiv.appendChild(priceInput);
-    priceDiv.appendChild(priceLabel);
-
-    form.appendChild(itemDiv);
-    form.appendChild(sizeDiv);
-    form.appendChild(priceDiv);
-  
-    mainDiv().appendChild(h1);
-    mainDiv().appendChild(form);
-  }
-
  /** Renderers **/
 
 const renderHomePage = () => {
@@ -116,10 +63,68 @@ const renderHomePage = () => {
 const renderWishlist = () => {
     mainDiv().innerHTML = wishlistTemplate();
 }
+const renderSell = () => {
+  const h1 = document.createElement('h1');
+  const form = document.createElement('form');
 
-const renderSearch = () => {
-    mainDiv().innerHTML = searchTemplate();
+  const itemDiv = document.createElement('div');
+  const itemInput = document.createElement ('input');
+  const itemLabel = document.createElement ('label');
+  
+  const sizeDiv = document.createElement('div');
+  const sizeInput = document.createElement ('input');
+  const sizeLabel = document.createElement ('label');
+
+  const priceDiv = document.createElement('div');
+  const priceInput = document.createElement ('input');
+  const priceLabel = document.createElement ('label');
+  const submitButton = document.createElement('input');
+
+
+  h1.className = 'left-align';
+  itemDiv.className ='input-field';
+  sizeDiv.className ='input-field';
+  priceDiv.className ='input-field';
+  submitButton.className = 'waves-effect waves-light btn';
+
+
+  itemInput.setAttribute ('id', 'date');
+  itemInput.setAttribute ('type', 'text');
+  itemInput.setAttribute ('for', 'date');
+
+  sizeInput.setAttribute ('id', 'date');
+  sizeInput.setAttribute ('type', 'text');
+  sizeInput.setAttribute ('for', 'date');
+
+  priceInput.setAttribute ('id', 'date');
+  priceInput.setAttribute ('type', 'text');
+  priceInput.setAttribute ('for', 'date');
+
+  h1.innerText = 'Sell';
+  itemLabel.innerText ='Item';
+  sizeLabel.innerText = 'Size';
+  priceLabel.innerText = 'Price';
+  submitButton.setAttribute('type', 'submit');
+  submitButton.setAttribute('value', 'Sell');
+
+  itemDiv.appendChild(itemInput);
+  itemDiv.appendChild(itemLabel);
+  sizeDiv.appendChild(sizeInput);
+  sizeDiv.appendChild(sizeLabel);
+  priceDiv.appendChild(priceInput);
+  priceDiv.appendChild(priceLabel);
+
+  form.appendChild(itemDiv);
+  form.appendChild(sizeDiv);
+  form.appendChild(priceDiv);
+  form.appendChild(submitButton);
+
+  form.addEventListener('submit', submitFormEvent);
+
+  mainDiv().appendChild(h1);
+  mainDiv().appendChild(form);
 }
+
 /** Events **/
 const loadInventory = () => {
     fetch(baseUrl + '/inventory')
@@ -139,11 +144,34 @@ const wishlistEvent = () => {
         renderWishlist();
     })
 }
-const searchEvent = () => {
-    searchLink().addEventListener('click', (e)=> {
+const sellEvent = () => {
+    sellLink().addEventListener('click', (e)=> {
         e.preventDefault();
-        renderSearch();
+        renderSell();
     })
+}
+const submitFormEvent = e => {
+  e.preventDefault();
+  // const [item, size, price] = e;
+  console.log('item', itemInput().value)
+  console.log('size', sizeInput().value)
+  console.log('price', priceInput().value)
+  fetch('http://localhost:3000/inventory', {
+    method: "POST",
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      item: itemInput().value,
+      size: sizeInput().value,
+      price: priceInput().value,
+    })
+  })
+  .then(resp => resp.json())
+  .then(meal => {
+    renderSellPage();
+  })
 }
 
 /*****************/
@@ -157,5 +185,5 @@ document.addEventListener('DOMContentLoaded', () => {
   // renderHomePage();
   homePageLinkEvent();
   wishlistEvent();
-  searchEvent();
+  sellEvent();
 })
