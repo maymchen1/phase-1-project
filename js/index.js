@@ -14,6 +14,9 @@ const mainDiv = () => document.getElementById("main");
 const homePageLink = () => document.getElementById('home-page-link');
 const wishlistLink = () => document.getElementById('wishlist-link');
 const searchLink = () => document.getElementById('search-link');
+const itemInput = () => document.getElementById('item');
+const sizeInput = () => document.getElementById('size');
+const priceInput = () => document.getElementById('price');
 /** Templates **/
 const homePageTemplate = () => {
     return `
@@ -150,7 +153,7 @@ const searchEvent = () => {
 
 
 /** WHEN THE DOM LOADS **/
-document.addEventListener('DOMContentLoaded', () =>{
+document.addEventListener('DOMContentLoaded', () => {
   // renderHomePage();
   homePageLinkEvent();
   wishlistEvent();
