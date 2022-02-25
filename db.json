@@ -1,18 +1,21 @@
 {
    "inventory": [
        {
+           "id": 1,
            "item": "Jeans",
            "size": "2",
            "price": "$20"
 
        },
        {
+        "id": 2,   
         "item": "Dress",
         "size": "XS",
         "price": "$50"
 
     },
        {
+        "id": 3,   
         "item": "Shirt",
         "size": "L",
         "price": "$15"
