@@ -28,7 +28,7 @@ const inventoryTemplate = (inventory) => {
   const tdItem = document.createElement('td');
   const tdSize = document.createElement('td');
   const tdPrice = document.createElement('td');
-  tdDate.innerText = inventory.item;
+  tdItem.innerText = inventory.item;
   tdSize.innerText = inventory.size;
   tdPrice.innerText = inventory.price;
   tr.appendChild(tdItem)
@@ -36,37 +36,36 @@ const inventoryTemplate = (inventory) => {
   tr.appendChild(tdPrice)
   return tr;
 }
-// const wishlistTemplate = () => {
-//     return `
-//     <h1>Your Wishlist</h1>
-//     <table class="highlight">
-//        <thead>
-//          <tr>
-//              <th>Item Name</th>
-//              <th>Item Size</th>
-//              <th>Item Price</th>
-//          </tr>
-//        </thead>
-
-//        <tbody>
-//          <tr>
-//            <td>Dress</td>
-//            <td>XS</td>
-//            <td>$50.00</td>
-//          </tr>
-//          <tr>
-//            <td>Jeans</td>
-//            <td>2</td>
-//            <td>$30.00</td>
-//          </tr>
-//          <tr>
-//            <td>Shirt</td>
-//            <td>L</td>
-//            <td>$15.00</td>
-//          </tr>
-//        </tbody>
-//      </table>  `
-// }
+ const wishlistTemplate = () => {
+     return `
+     <h1>Your Wishlist</h1>
+     <table class="highlight">
+        <thead>
+          <tr>
+              <th>Item Name</th>
+              <th>Item Size</th>
+              <th>Item Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Dress</td>
+            <td>XS</td>
+            <td>$50.00</td>
+          </tr>
+          <tr>
+            <td>Jeans</td>
+            <td>2</td>
+            <td>$30.00</td>
+          </tr>
+          <tr>
+            <td>Shirt</td>
+            <td>L</td>
+            <td>$15.00</td>
+          </tr>
+        </tbody>
+      </table>  `
+ }
  /** Renderers **/
 
 const renderHomePage = () => {
@@ -74,8 +73,34 @@ const renderHomePage = () => {
 }
 
 const renderWishlist = () => {
-    mainDiv().innerHTML = wishlistTemplate();
-}
+     mainDiv().innerHTML = wishlistTemplate();
+ }
+// const renderWishList = async () => {
+//   await loadInventory();
+//   mainDiv().innerHTML = '';
+//   const h1 = document.createElement('h1');
+//   const table = document.createElement('table');
+//   const thead = document.createElement('thead');
+//   const tr = document.createElement('tr');
+//   const thItem = document.createElement('th');
+//   const thSize = document.createElement('th');
+//   const thPrice = document.createElement('th');
+//   h1.innerText = 'Wishlist'
+//   thItem.innerText = 'Item';
+//   thSize.innerText = 'Size';
+//   thPrice.innerText = 'Price';
+//   table.classList.add('highlight');
+//   tr.appendChild(thItem);
+//   tr.appendChild(thSize);
+//   tr.appendChild(thPrice);
+//   thead.appendChild(tr);
+//   table.appendChild(thead);
+//   inventory.forEach(inventory => tbody.appendChild(inventoryTemplate(inventory)))
+//   table.appendChild(tbody);
+//   mainDiv().appendChild(h1);
+//   mainDiv().appendChild(table);
+// }
+
 const renderSell = () => {
   const h1 = document.createElement('h1');
   const form = document.createElement('form');
@@ -140,10 +165,15 @@ const renderSell = () => {
 
 /** Events **/
 const loadInventory = () => {
-    fetch(baseUrl + '/inventory')
-    .then(resp => resp.json())
-    .then(data => inventory = data)
-}
+     fetch(baseUrl + '/inventory')
+     .then(resp => resp.json())
+     .then(data => inventory = data)
+ }
+// const loadInventory = async () => {
+//   const resp = await fetch(baseUrl + '/inventory')
+//   const data = await resp.json();
+//   inventory = data;
+// }
 
 const homePageLinkEvent = () => {
     homePageLink().addEventListener('click', (e)=> {
