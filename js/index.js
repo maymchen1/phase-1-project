@@ -23,37 +23,50 @@ const homePageTemplate = () => {
             <h1 class="center-align">Welcome! Shop and sell at one place! </h1>
 `
 }
-const wishlistTemplate = () => {
-    return `
-    <h1>Your Wishlist</h1>
-    <table class="highlight">
-       <thead>
-         <tr>
-             <th>Item Name</th>
-             <th>Item Size</th>
-             <th>Item Price</th>
-         </tr>
-       </thead>
-
-       <tbody>
-         <tr>
-           <td>Dress</td>
-           <td>XS</td>
-           <td>$50.00</td>
-         </tr>
-         <tr>
-           <td>Jeans</td>
-           <td>2</td>
-           <td>$30.00</td>
-         </tr>
-         <tr>
-           <td>Shirt</td>
-           <td>L</td>
-           <td>$15.00</td>
-         </tr>
-       </tbody>
-     </table>  `
+const inventoryTemplate = (inventory) => {
+  const tr = document.createElement('tr');
+  const tdItem = document.createElement('td');
+  const tdSize = document.createElement('td');
+  const tdPrice = document.createElement('td');
+  tdDate.innerText = inventory.item;
+  tdSize.innerText = inventory.size;
+  tdPrice.innerText = inventory.price;
+  tr.appendChild(tdItem)
+  tr.appendChild(tdSize)
+  tr.appendChild(tdPrice)
+  return tr;
 }
+// const wishlistTemplate = () => {
+//     return `
+//     <h1>Your Wishlist</h1>
+//     <table class="highlight">
+//        <thead>
+//          <tr>
+//              <th>Item Name</th>
+//              <th>Item Size</th>
+//              <th>Item Price</th>
+//          </tr>
+//        </thead>
+
+//        <tbody>
+//          <tr>
+//            <td>Dress</td>
+//            <td>XS</td>
+//            <td>$50.00</td>
+//          </tr>
+//          <tr>
+//            <td>Jeans</td>
+//            <td>2</td>
+//            <td>$30.00</td>
+//          </tr>
+//          <tr>
+//            <td>Shirt</td>
+//            <td>L</td>
+//            <td>$15.00</td>
+//          </tr>
+//        </tbody>
+//      </table>  `
+// }
  /** Renderers **/
 
 const renderHomePage = () => {
@@ -182,7 +195,7 @@ const submitFormEvent = e => {
 
 /** WHEN THE DOM LOADS **/
 document.addEventListener('DOMContentLoaded', () => {
-  // renderHomePage();
+  //renderHomePage();
   homePageLinkEvent();
   wishlistEvent();
   sellEvent();
