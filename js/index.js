@@ -76,31 +76,6 @@ const renderHomePage = () => {
 const renderWishlist = () => {
      mainDiv().innerHTML = wishlistTemplate();
  }
- const renderListings = async () => {
-   await loadInventory();
-   mainDiv().innerHTML = '';
-   const h1 = document.createElement('h1');
-   const table = document.createElement('table');
-   const thead = document.createElement('thead');
-   const tr = document.createElement('tr');
-   const thItem = document.createElement('th');
-   const thSize = document.createElement('th');
-   const thPrice = document.createElement('th');
-   h1.innerText = 'Listings'
-   thItem.innerText = 'Item';
-   thSize.innerText = 'Size';
-   thPrice.innerText = 'Price';
-   table.classList.add('highlight');
-   tr.appendChild(thItem);
-   tr.appendChild(thSize);
-   tr.appendChild(thPrice);
-   thead.appendChild(tr);
-   table.appendChild(thead);
-   inventory.forEach(inventory => tbody.appendChild(inventoryTemplate(inventory)))
-   table.appendChild(tbody);
-   mainDiv().appendChild(h1);
-   mainDiv().appendChild(table);
- }
 
 const renderSell = () => {
   const h1 = document.createElement('h1');
@@ -165,9 +140,35 @@ const renderSell = () => {
   mainDiv().appendChild(h1);
   mainDiv().appendChild(form);
 }
-const renderListings = () => {
-  mainDiv().innerHTML = listingsTemplate();
+
+const renderListings = async () => {
+  await loadInventory();
+  mainDiv().innerHTML = '';
+  const h1 = document.createElement('h1');
+  const table = document.createElement('table');
+  const thead = document.createElement('thead');
+  const tr = document.createElement('tr');
+  const thItem = document.createElement('th');
+  const thSize = document.createElement('th');
+  const thPrice = document.createElement('th');
+  h1.innerText = 'Listings'
+  thItem.innerText = 'Item';
+  thSize.innerText = 'Size';
+  thPrice.innerText = 'Price';
+  table.classList.add('highlight');
+  tr.appendChild(thItem);
+  tr.appendChild(thSize);
+  tr.appendChild(thPrice);
+  thead.appendChild(tr);
+  table.appendChild(thead);
+  inventory.forEach(inventory => tbody.appendChild(inventoryTemplate(inventory)))
+  table.appendChild(tbody);
+  mainDiv().appendChild(h1);
+  mainDiv().appendChild(table);
 }
+//const renderListings = () => {
+  //mainDiv().innerHTML = listingsTemplate();
+//}//
 /** Events **/
 const loadInventory = () => {
      fetch(baseUrl + '/inventory')
