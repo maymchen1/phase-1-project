@@ -80,7 +80,7 @@ const renderHomePage = () => {
 //      mainDiv().innerHTML = wishlistTemplate();
 //  }
 
-const renderListingsPage = async () => {
+const renderListings = async () => {
   await loadInventory();
   mainDiv().innerHTML = '';
   const h1 = document.createElement('h1');
@@ -110,7 +110,7 @@ const renderListingsPage = async () => {
   mainDiv().appendChild(table);
 }
 
-const renderSellPage = () => {
+const renderSell = () => {
   const h1 = document.createElement('h1');
   const form = document.createElement('form');
 
@@ -244,7 +244,7 @@ const submitFormEvent = e => {
 
 /** WHEN THE DOM LOADS **/
 document.addEventListener('DOMContentLoaded', () => {
-  renderHomePage();
+  //renderHomePage();
   homePageLinkEvent();
   sellEvent();
   listingsEvent();
