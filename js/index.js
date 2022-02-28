@@ -14,6 +14,7 @@ const mainDiv = () => document.getElementById("main");
 const homePageLink = () => document.getElementById('home-page-link');
 const wishlistLink = () => document.getElementById('wishlist-link');
 const sellLink = () => document.getElementById('sell-link');
+const listingsLink = () => document.getElementById('listings-link');
 const itemInput = () => document.getElementById('item');
 const sizeInput = () => document.getElementById('size');
 const priceInput = () => document.getElementById('price');
@@ -145,6 +146,8 @@ const renderSell = () => {
   submitButton.setAttribute('type', 'submit');
   submitButton.setAttribute('value', 'Sell');
 
+  mainDiv().innerHTML = "";
+
   itemDiv.appendChild(itemInput);
   itemDiv.appendChild(itemLabel);
   sizeDiv.appendChild(sizeInput);
@@ -162,7 +165,9 @@ const renderSell = () => {
   mainDiv().appendChild(h1);
   mainDiv().appendChild(form);
 }
-
+const renderListings = () => {
+  mainDiv().innerHTML = listingsTemplate();
+}
 /** Events **/
 const loadInventory = () => {
      fetch(baseUrl + '/inventory')
@@ -193,6 +198,12 @@ const sellEvent = () => {
         renderSell();
     })
 }
+const listingsEvent = () => {
+    listingsLink().addEventListener('click', (e)=> {
+        e.preventDefault();
+        renderListings();
+    })
+}
 const submitFormEvent = e => {
   e.preventDefault();
   // const [item, size, price] = e;
@@ -212,7 +223,7 @@ const submitFormEvent = e => {
     })
   })
   .then(resp => resp.json())
-  .then(meal => {
+  .then(inventory => {
     renderSellPage();
   })
 }
@@ -225,8 +236,9 @@ const submitFormEvent = e => {
 
 /** WHEN THE DOM LOADS **/
 document.addEventListener('DOMContentLoaded', () => {
-  //renderHomePage();
+  renderHomePage();
   homePageLinkEvent();
   wishlistEvent();
   sellEvent();
+  listingsEvent();
 })
