@@ -134,17 +134,17 @@ const renderSell = () => {
   priceDiv.className ='input-field';
   submitButton.className = 'waves-effect waves-light btn';
 
-  itemInput.setAttribute ('id', 'date');
+  itemInput.setAttribute ('id', 'item');
   itemInput.setAttribute ('type', 'text');
-  itemLabel.setAttribute ('for', 'date');
+  itemLabel.setAttribute ('for', 'item');
 
-  sizeInput.setAttribute ('id', 'date');
+  sizeInput.setAttribute ('id', 'size');
   sizeInput.setAttribute ('type', 'text');
-  sizeLabel.setAttribute ('for', 'date');
+  sizeLabel.setAttribute ('for', 'size');
 
-  priceInput.setAttribute ('id', 'date');
+  priceInput.setAttribute ('id', 'price');
   priceInput.setAttribute ('type', 'text');
-  priceLabel.setAttribute ('for', 'date');
+  priceLabel.setAttribute ('for', 'price');
   submitButton.setAttribute('type', 'submit');
   submitButton.setAttribute('value', 'List');
 
@@ -232,7 +232,7 @@ const submitFormEvent = e => {
   })
   .then(resp => resp.json())
   .then(inventory => {
-    renderListingsPage();
+    renderListings();
   })
 }
 
