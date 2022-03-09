@@ -35,6 +35,30 @@
       "size": "l",
       "price": "$15",
       "id": 6
+    },
+    {
+      "item": "shirt",
+      "size": "l",
+      "price": "$15",
+      "id": 7
+    },
+    {
+      "item": "shirt",
+      "size": "l",
+      "price": "$15",
+      "id": 8
+    },
+    {
+      "item": "shirt",
+      "size": "l",
+      "price": "$15",
+      "id": 9
+    },
+    {
+      "item": "shirt",
+      "size": "l",
+      "price": "$15",
+      "id": 10
     }
   ]
 }

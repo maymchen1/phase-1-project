@@ -88,18 +88,19 @@ const renderListings = async () => {
   const thead = document.createElement('thead');
   const tr = document.createElement('tr');
   const thItem = document.createElement('th');
+  //const thItemName = document.createElement('th');
   const thSize = document.createElement('th');
   const thPrice = document.createElement('th');
   const tbody = document.createElement('tbody');
   h1.innerText = 'Listings'
   thItem.innerText = 'Item';
   thSize.innerText = 'Size';
-  thItemName.innerText = 'Item Name';
+  //thItemName.innerText = 'Item Name';
   thPrice.innerText = 'Price';
   table.classList.add('highlight');
   tr.appendChild(thItem);
   tr.appendChild(thSize);
-  tr.appendChild(thItemName);
+  //tr.appendChild(thItemName);
   tr.appendChild(thPrice);
   thead.appendChild(tr);
   table.appendChild(thead);
