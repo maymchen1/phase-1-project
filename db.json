@@ -59,6 +59,12 @@
       "size": "l",
       "price": "$15",
       "id": 10
+    },
+    {
+      "item": "shirt",
+      "size": "l",
+      "price": "$15",
+      "id": 11
     }
   ]
 }
