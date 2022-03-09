@@ -7,4 +7,3 @@ The website features 3 pages: a homepage, a wishlist page, and a sell page. The 
 ### How to use
 The website uses simple user mechanics. To load the homepage, the user can simply click on the site title on the upper lefthand corner. To view their wishlist, the user can click on "wishlist." To add items to sell, the user must populate a form with item name, size and price before submitting. 
 
-fork and clone over 
