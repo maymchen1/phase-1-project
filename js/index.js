@@ -88,7 +88,6 @@ const renderListings = async () => {
   const thead = document.createElement('thead');
   const tr = document.createElement('tr');
   const thItem = document.createElement('th');
-  const thItemName = document.createElement('th');
   const thSize = document.createElement('th');
   const thPrice = document.createElement('th');
   const tbody = document.createElement('tbody');
